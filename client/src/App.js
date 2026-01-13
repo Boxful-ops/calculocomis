@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import UserManagement from './pages/UserManagement';
 import CommissionManagement from './pages/CommissionManagement';
+import ClientManagement from './pages/ClientManagement';
 import HubSpotIntegration from './pages/HubSpotIntegration';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -35,6 +36,7 @@ function AppContent() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/commissions" element={<CommissionManagement />} />
+            <Route path="/clients" element={<ClientManagement />} />
             <Route path="/hubspot" element={<HubSpotIntegration />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

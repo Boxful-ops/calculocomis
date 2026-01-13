@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../utils/AuthContext';
-import { Sync, CheckCircle, AlertCircle, Users, Search } from 'lucide-react';
+import { RefreshCw, CheckCircle, AlertCircle, Users, Search } from 'lucide-react';
 import axios from 'axios';
 
 const HubSpotIntegration = () => {
@@ -103,7 +103,7 @@ const HubSpotIntegration = () => {
           disabled={syncing}
           className="btn-primary flex items-center disabled:opacity-50"
         >
-          <Sync className={`w-4 h-4 mr-2 ${syncing ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-6 h-6 mr-2 ${syncing ? 'animate-spin' : ''}`} />
           {syncing ? 'Sincronizando...' : 'Sincronizar con HubSpot'}
         </button>
       </div>

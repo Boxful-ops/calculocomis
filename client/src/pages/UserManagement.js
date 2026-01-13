@@ -15,6 +15,7 @@ const UserManagement = () => {
     email: '',
     password: '',
     role: 'seller',
+    country: 'guatemala',
     permissions: []
   });
 
@@ -50,6 +51,7 @@ const UserManagement = () => {
         email: '',
         password: '',
         role: 'seller',
+        country: 'guatemala',
         permissions: []
       });
     } catch (error) {
@@ -75,6 +77,7 @@ const UserManagement = () => {
       email: user.email,
       password: '',
       role: user.role,
+      country: user.country || 'guatemala',
       permissions: user.permissions || []
     });
     setShowModal(true);
@@ -95,6 +98,13 @@ const UserManagement = () => {
     super_admin: 'badge-danger',
     admin: 'badge-warning',
     seller: 'badge-success'
+  };
+
+  const countryLabels = {
+    guatemala: '🇬🇹 Guatemala',
+    honduras: '🇭🇳 Honduras',
+    elsalvador: '🇸🇻 El Salvador',
+    costarica: '🇨🇷 Costa Rica'
   };
 
   if (currentUser?.role !== 'super_admin') {
@@ -151,6 +161,7 @@ const UserManagement = () => {
               <tr>
                 <th>Usuario</th>
                 <th>Email</th>
+                <th>País</th>
                 <th>Rol</th>
                 <th>Fecha de Creación</th>
                 <th>Acciones</th>
@@ -159,13 +170,13 @@ const UserManagement = () => {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan="5" className="text-center py-8">
+                  <td colSpan="6" className="text-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
                   </td>
                 </tr>
               ) : filteredUsers.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="text-center py-8 text-gray-500">
+                  <td colSpan="6" className="text-center py-8 text-gray-500">
                     No se encontraron usuarios
                   </td>
                 </tr>
@@ -174,6 +185,7 @@ const UserManagement = () => {
                   <tr key={user._id}>
                     <td className="font-medium">{user.username}</td>
                     <td>{user.email}</td>
+                    <td>{countryLabels[user.country] || 'No asignado'}</td>
                     <td>
                       <span className={`badge ${roleColors[user.role]}`}>
                         {roleLabels[user.role]}
@@ -252,6 +264,22 @@ const UserManagement = () => {
                   className="input-field"
                   required={!editingUser}
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  País
+                </label>
+                <select
+                  value={formData.country}
+                  onChange={(e) => setFormData({...formData, country: e.target.value})}
+                  className="input-field"
+                >
+                  <option value="guatemala">🇬🇹 Guatemala</option>
+                  <option value="honduras">🇭🇳 Honduras</option>
+                  <option value="elsalvador">🇸🇻 El Salvador</option>
+                  <option value="costarica">🇨🇷 Costa Rica</option>
+                </select>
               </div>
 
               <div>
